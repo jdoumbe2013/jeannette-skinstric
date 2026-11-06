@@ -110,10 +110,29 @@
   transform: translateY(-50%) rotate(45deg);
   pointer-events: none;
 }
-
 .dotted-left {
   left: -300px;
+  animation: floatLeft 4s ease-in-out infinite alternate;
 }
+.dotted-right {
+  right: -300px;
+  animation: floatRight 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatRight {
+  from {
+    margin-right: 0;
+  }
+
+  to {
+    margin-right: 60px;
+  }
+}
+
+  to {
+    margin-left: px;
+  }
+
 
 .dotted-right {
   right: -300px;
@@ -271,11 +290,11 @@
 }
 
 .scan-text {
-  left: calc(50% + 75px);
+  left: calc(50% + 25px);
   top: calc(50% - 75px);
 }
 .gallery-text {
-  right: calc(50% + 75px);
+  right: calc(50% - 25px);
   top: calc(50% + 80px);
   text-align: right;
 }
@@ -706,8 +725,9 @@
 
 .confidence-circle {
   position: absolute;
-  right: 32px;
-  bottom: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 220px;
   height: 220px;
   border: 2px solid #1a1b1c;
@@ -836,4 +856,40 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   .demographics-help { padding-bottom: 75px; }
   .get-summary { right: 18px; bottom: 20px; }
   .app-error { bottom: 70px; }
+}
+@media (min-width: 901px) {
+  .upload-options {
+    gap: 340px;
+  }
+}
+/* Demographics percentage circle animation */
+
+.confidence-circle {
+  animation: confidencePulse 3s ease-in-out infinite;
+}
+
+@keyframes confidencePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+/* Demographics middle panel entrance animation */
+
+.demographics-center {
+animation: demographicsFadeIn 3s ease-out both;
+}
+@keyframes demographicsFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
 }
